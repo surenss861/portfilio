@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Interactive Accessible Website</title>
+  
+  <!-- Google Fonts for unique fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      overflow-x: hidden;
+      transition: background-color 0.5s ease;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    h1, h2 {
+      font-size: 2rem;
+      color: #333;
+      transition: color 0.5s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Button Styling */
+    button {
+      padding: 12px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 5px 3px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Grid Layout for Main Content */
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    section {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      font-family: 'Playfair Display', serif;
+    }
+
+    section:hover {
+      transform: translateY(-10px);
+    }
+
+    /* Section Styling */
+    #contact {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      color: #555;
+      background-color: #e0f7fa;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    #contact p {
+      margin-bottom: 10px;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 15px;
+      }
+
+      header, footer {
+        padding: 15px;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2rem;
+      }
+
+      h1, h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 10px;
+      }
+
+      h1, h2 {
+        font-size: 1.25rem;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 12px;
+      }
+    }
+
+    /* Animation for fading in content */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Complex Selectors */
+    section#why:hover h2, section#who:hover h2 {
+      color: #007BFF;
+    }
+
+    main > section:nth-child(odd) {
+      background-color: #e0f7fa;
+    }
+
+    main > section:nth-child(even) {
+      background-color: #f1f8e9;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      color: #777;
+      transition: color 0.3s ease;
+    }
+
+    footer p:hover {
+      color: #333;
+    }
+
+    /* Dark mode toggle styles */
+    .dark-mode {
+      background-color: #333;
+      color: white;
+    }
+
+    .dark-mode header, .dark-mode footer {
+      background-color: #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Accessible Website</h1>
+  </header>
+
+  <main>
+    <section id="why">
+      <h2>Why?</h2>
+      <p id="why-text">This is the reason why I created this website.</p>
+      <button id="change-why" aria-label="Change Why section text">Change Why</button>
+    </section>
+
+    <section id="who">
+      <h2>Who?</h2>
+      <p id="who-text">This is who I am.</p>
+      <button id="change-who" aria-label="Change Who section text">Change Who</button>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><strong>Name:</strong> Suren Sureshkmar</p>
+      <p><strong>Phone:</strong> +1 (437) 604-3273</p>
+      <p><strong>Email:</strong> ssurn29@gmail.com</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Website. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Get references to the DOM elements
+    const whyText = document.getElementById('why-text');
+    const whoText = document.getElementById('who-text');
+    const changeWhyButton = document.getElementById('change-why');
+    const changeWhoButton = document.getElementById('change-who');
+
+    // Change "Why" section text when button is clicked
+    changeWhyButton.addEventListener('click', function() {
+      whyText.textContent = 'I created this website to showcase my skills and projects.';
+      // Update button label for screen readers
+      changeWhyButton.setAttribute('aria-label', 'Why section text changed');
+    });
+
+    // Change "Who" section text when button is clicked
+    changeWhoButton.addEventListener('click', function() {
+      whoText.textContent = 'I am a web developer learning HTML, CSS, JavaScript, and more!';
+      // Update button label for screen readers
+      changeWhoButton.setAttribute('aria-label', 'Who section text changed');
+    });
+
+    // Optional: Dark Mode Toggle (if you'd like to add it later)
+    const darkModeButton = document.createElement('button');
+    darkModeButton.textContent = 'Toggle Dark Mode';
+    darkModeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+    document.body.appendChild(darkModeButton);
+  </script>
+</body>
+</html>
